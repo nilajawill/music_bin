@@ -1,0 +1,63 @@
+<% if @song.errors.any? %>
+ <div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+   <div class="panel panel-danger">
+    <div class="panel-heading">
+     <h2 class="panel-title">
+      Whoops! You have <%= pluralize(@song.errors.count, "error") %> errors:
+     </h2>
+     <div class="panel-body">
+      <ul>
+       <% @song.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+       <% end %>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <% end %>
+<div class="row">
+ <div class="col-xs-12">
+  <%= form_for(@song, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :title %>
+   </div>
+   <div class="col-sm-6">
+    <%= f.text_field :title, class: "form-control", placeholder: "Song title", autofocus: true %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :artist %>
+   </div>
+   <div class="col-sm-6">
+    <%= f.text_field :artist, class: "form-control", placeholder: "Song artist", autofocus: true %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :youtube_link %>
+   </div>
+   <div class="col-sm-6">
+    <%= f.text_field :youtube_link, class: "form-control", placeholder: "Song link", autofocus: true %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :notes %>
+   </div>
+   <div class="col-sm-6">
+    <%= f.text_area :notes, rows: 10, class: "form-control", placeholder: "Additional notes..." %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit class: 'btn btn-primary btn-large' %>
+   </div>
+  </div>
+  <% end %>
+ </div>
+</div>

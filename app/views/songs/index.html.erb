@@ -1,0 +1,27 @@
+<h1 align="center">Currently in the Bin</h1>
+<% @songs.each do |song| %>
+ <div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+   <div class="well well-lg">
+    <div class="song-title">
+     <%= link_to song.title, song_path(song) %>
+    </div>
+    <div class="song-artist">
+     Artist: <%= song.artist %>
+    </div>
+    <div class="song-note">
+     Additional notes: <%= truncate(song.notes, length: 25) { link_to "see more", song_path(song) } %>
+    </div>
+    <div class="song-create-time">
+      <%= song.created_at.in_time_zone("America/New_York") %>
+    </div>
+    <% if logged_in? %>
+      <div class="song-actions">
+        <%= link_to "Edit", edit_song_path(song), class: "btn btn-xs btn-success" %>
+       <%= link_to "Delete", song_path(song), method: :delete, data: { confirm: "Delete this song?"}, class: "btn btn-xs btn-danger" %>
+      </div>
+    <% end %>
+   </div>
+  </div>
+ </div>
+<% end %>

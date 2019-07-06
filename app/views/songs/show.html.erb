@@ -1,0 +1,14 @@
+<div class="well col-xs-8 col-xs-offset-2">
+  <h2 class="center" align="center"><strong><%= @song.title + " by " + @song.artist %></strong></h2>
+  <hr>
+  
+  <h3 align="center">Song Details</h3>
+ <h4>Youtube Link: </h4><%= link_to @song.youtube_link, @song.youtube_link, target: "_blank"  %>
+ <h4>Additional Notes:</h4><%= simple_format(@song.notes) %>
+ <hr>
+ <%= link_to "Back to Bin", songs_path, class: "btn btn-xs btn-primary" %>
+ <%= link_to "Edit Song", edit_song_path(@song), class: "btn btn-xs btn-success" %>
+<%= link_to "Delete Song", song_path(@song),
+    method: :delete,
+    data: { confirm: "Delete this song?" },
+    class: "btn btn-xs btn-danger"%>
